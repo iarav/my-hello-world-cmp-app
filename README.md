@@ -1,16 +1,87 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
+# MyKMPHelloWorldApp
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+A Kotlin Multiplatform project targeting Android, iOS, and Desktop (JVM) using Compose Multiplatform. Share business logic and UI across platforms with a single codebase.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+---
 
+## Table of Contents
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Build & Run](#build--run)
+    - [Android](#android)
+    - [iOS](#ios)
+    - [Desktop (JVM)](#desktop-jvm)
+- [Contributing](#contributing)
+- [License](#license)
+- [Resources](#resources)
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+---
+
+## Features
+- Shared business logic and UI with Kotlin Multiplatform
+- Compose Multiplatform for Android, iOS, and Desktop
+- Platform-specific code for native integrations
+
+## Project Structure
+
+```
+/composeApp/         # Shared code and UI (Kotlin Multiplatform + Compose)
+  └─ src/
+      ├─ commonMain/ # Code shared across all platforms
+      ├─ androidMain/ # Android-specific code
+      ├─ iosMain/     # iOS-specific code
+      ├─ jvmMain/     # Desktop (JVM)-specific code
+      └─ ...
+/iosApp/             # iOS application (entry point, SwiftUI integration)
+  └─ iosApp/
+      ├─ ContentView.swift
+      └─ ...
+```
+
+- **composeApp**: Shared code for all Compose Multiplatform applications.
+  - `commonMain`: Code common to all targets.
+  - `androidMain`, `iosMain`, `jvmMain`: Platform-specific code.
+- **iosApp**: iOS application entry point. Add SwiftUI code here if needed.
+
+## Getting Started
+
+> **Important:** This project requires a macOS operating system to build and run, due to iOS development dependencies (Xcode, CocoaPods, etc).
+
+### Prerequisites
+- [macOS](https://www.apple.com/macos/) (required for iOS development)
+- [JDK 17+](https://adoptium.net/)
+- [Android Studio](https://developer.android.com/studio) (for Android/Desktop)
+- [Xcode](https://developer.apple.com/xcode/) (for iOS)
+- [CocoaPods](https://cocoapods.org/) (for iOS integration)
+
+### Build & Run
+
+#### Android
+1. Open the project in Android Studio.
+2. Select the `androidApp` run configuration.
+3. Click **Run**.
+
+#### iOS
+1. Open `/iosApp/iosApp.xcodeproj` in Xcode.
+2. Select a simulator or device.
+3. Build and run.
+
+#### Desktop (JVM)
+1. In Android Studio or via terminal, run:
+   ```sh
+   ./gradlew :composeApp:run
+   ```
+
+## Contributing
+Contributions are welcome! Please open issues or submit pull requests.
+
+## License
+[MIT](LICENSE) (or specify your license here)
+
+## Resources
+- [Kotlin Multiplatform Documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)
+- [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform)
+
+---
