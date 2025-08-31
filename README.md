@@ -74,12 +74,6 @@ A Kotlin Multiplatform project targeting Android, iOS, and Desktop (JVM) using C
    ./gradlew :composeApp:run
    ```
 
-## Contributing
-Contributions are welcome! Please open issues or submit pull requests.
-
-## License
-[MIT](LICENSE) (or specify your license here)
-
 ## Resources
 - [Kotlin Multiplatform Documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)
 - [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform)
