@@ -21,7 +21,11 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import mykmphelloworldapp.composeapp.generated.resources.Res
+import mykmphelloworldapp.composeapp.generated.resources.battery_level_text
+import mykmphelloworldapp.composeapp.generated.resources.click_here
 import mykmphelloworldapp.composeapp.generated.resources.compose_multiplatform
+import mykmphelloworldapp.composeapp.generated.resources.logo_android
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 @Preview
@@ -44,11 +48,11 @@ fun App(
             ) {
                 Text(
                     color = MaterialTheme.colorScheme.onSecondary,
-                    text = "Nível de bateria: ${batteryLevel}%"
+                    text = "${stringResource(Res.string.battery_level_text)} ${batteryLevel}%"
                 )
             }
             Button(modifier = Modifier.padding(top = 20.dp), onClick = { showContent = !showContent }) {
-                Text("Clique aqui!")
+                Text(stringResource(Res.string.click_here))
             }
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }
@@ -57,7 +61,7 @@ fun App(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Image(
-                        painterResource(Res.drawable.compose_multiplatform),
+                        painterResource(Res.drawable.logo_android),
                         modifier = Modifier.width(100.dp),
                         contentDescription = null
                     )

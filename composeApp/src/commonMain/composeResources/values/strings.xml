@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="battery_level_text">Nível de bateria:</string>
+    <string name="click_here">Clique aqui!</string>
+</resources>
