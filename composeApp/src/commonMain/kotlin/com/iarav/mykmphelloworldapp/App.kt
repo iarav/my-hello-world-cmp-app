@@ -17,16 +17,19 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.iarav.mykmphelloworldapp.presentation.view.MyExampleViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import mykmphelloworldapp.composeapp.generated.resources.Res
 import mykmphelloworldapp.composeapp.generated.resources.battery_level_text
 import mykmphelloworldapp.composeapp.generated.resources.click_here
-import mykmphelloworldapp.composeapp.generated.resources.compose_multiplatform
 import mykmphelloworldapp.composeapp.generated.resources.logo_android
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 @Preview
 fun App(
@@ -42,8 +45,10 @@ fun App(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             val batteryLevel = batteryManager.getBatteryLevel()
+            val viewModel = koinViewModel<MyExampleViewModel>()
             Box(
-                modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.secondary)
+                modifier = Modifier.fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.secondary)
                     .padding(20.dp)
             ) {
                 Text(
@@ -51,11 +56,17 @@ fun App(
                     text = "${stringResource(Res.string.battery_level_text)} ${batteryLevel}%"
                 )
             }
-            Button(modifier = Modifier.padding(top = 20.dp), onClick = { showContent = !showContent }) {
+            Button(
+                modifier = Modifier.padding(top = 20.dp),
+                onClick = { showContent = !showContent }) {
                 Text(stringResource(Res.string.click_here))
             }
             AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
+                val greeting = remember {
+                    Greeting().greet(
+                        helloString = viewModel.getHelloString()
+                    )
+                }
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
