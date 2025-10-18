@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.iarav.mykmphelloworldapp.presentation.view.CensorScreen
 import com.iarav.mykmphelloworldapp.presentation.view.MyExampleViewModel
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -25,6 +26,7 @@ import mykmphelloworldapp.composeapp.generated.resources.Res
 import mykmphelloworldapp.composeapp.generated.resources.battery_level_text
 import mykmphelloworldapp.composeapp.generated.resources.click_here
 import mykmphelloworldapp.composeapp.generated.resources.logo_android
+import networking.InsultCensorClient
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -33,7 +35,8 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @Composable
 @Preview
 fun App(
-    batteryManager: BatteryManager
+    batteryManager: BatteryManager,
+    client: InsultCensorClient
 ) {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
@@ -78,6 +81,7 @@ fun App(
                     )
                     Text(greeting)
                 }
+                CensorScreen(client)
             }
         }
     }
